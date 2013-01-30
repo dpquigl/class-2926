@@ -6,8 +6,12 @@ import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
+
 import com.marakana.android.yamba.svc.YambaContract;
 import com.marakana.android.yamba.svc.YambaServiceHelper;
 
@@ -33,6 +37,23 @@ public class TimelineActivity extends ListActivity
         R.id.textTime,
         R.id.textStatus
     };
+
+    static class TimelineBinder implements SimpleCursorAdapter.ViewBinder {
+        @Override
+        public boolean setViewValue(View view, Cursor cursor, int colIndex) {
+            if (view.getId() != R.id.textTime) { return false; }
+
+            String tStr = "ages ago";
+            long t = cursor.getLong(colIndex);
+            if (0 < t) {
+                tStr = DateUtils.getRelativeTimeSpanString(t, System.currentTimeMillis(), 0)
+                    .toString();
+            }
+            ((TextView) view).setText(tStr);
+            return true;
+        }
+    }
+
 
     private SimpleCursorAdapter listAdapter;
     private YambaServiceHelper yamba;
@@ -78,6 +99,7 @@ public class TimelineActivity extends ListActivity
                 FROM,
                 TO,
                 0);
+        listAdapter.setViewBinder(new TimelineBinder());
         setListAdapter(listAdapter);
     }
 
