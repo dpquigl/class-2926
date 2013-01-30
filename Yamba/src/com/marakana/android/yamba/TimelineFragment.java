@@ -62,6 +62,10 @@ public class TimelineFragment extends ListFragment
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         if (BuildConfig.DEBUG) { Log.d(TAG, "create loader"); }
+
+        // To create an AsyncTaskLoader<T>,
+        // see bug: http://code.google.com/p/android/issues/detail?id=14944
+
         return new CursorLoader(
             getActivity().getApplicationContext(),
             YambaContract.Timeline.URI,

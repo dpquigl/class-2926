@@ -15,7 +15,6 @@
 */
 package com.marakana.android.yamba;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 
@@ -24,7 +23,7 @@ import android.os.Bundle;
  * @version $Revision: $
  * @author <a href="mailto:blake.meike@gmail.com">G. Blake Meike</a>
  */
-public class TimelineActivity extends Activity {
+public class TimelineActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
