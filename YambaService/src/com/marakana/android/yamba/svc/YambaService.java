@@ -64,20 +64,19 @@ public class YambaService extends IntentService {
     public YambaService() { super(TAG); }
 
     @Override
+    public void onCreate() {
+        super.onCreate();
+        Poller.startPolling(getApplicationContext());
+    }
+
+
+    @Override
     protected void onHandleIntent(Intent intent) {
         Bundle args = intent.getExtras();
         int op = args.getInt(YambaContract.SVC_PARAM_OP);
         if (BuildConfig.DEBUG) { Log.d(TAG, "handle op: " + op); }
 
         switch (Op.fromCode(op)) {
-            case START_POLL:
-                Poller.startPolling(getApplicationContext());
-                break;
-
-            case STOP_POLL:
-                Poller.stopPolling(getApplicationContext());
-                break;
-
             case POST:
                 new Poster((YambaApplication) getApplication()).postStatus(args);
                 break;
@@ -87,7 +86,7 @@ public class YambaService extends IntentService {
                 break;
 
             default:
-                throw new IllegalArgumentException("Unrecognized op: " + op);
+                Log.w(TAG, "Unrecognized op: " + op);
         }
     }
 }
