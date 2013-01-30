@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.SimpleCursorAdapter;
 import com.marakana.android.yamba.svc.YambaContract;
-import com.marakana.android.yamba.svc.YambaServiceHelper;
 
 
 public class TimelineActivity extends ListActivity
@@ -36,7 +35,6 @@ public class TimelineActivity extends ListActivity
 
 
     private SimpleCursorAdapter listAdapter;
-    private YambaServiceHelper yamba;
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
@@ -67,8 +65,6 @@ public class TimelineActivity extends ListActivity
         super.onCreate(state);
 
         getListView().setBackgroundResource(R.drawable.bg);
-
-        yamba = YambaServiceHelper.getInstance();
 
         getLoaderManager().initLoader(LOADER_ID, null, this);
 
