@@ -6,8 +6,12 @@ import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
+
 import com.marakana.android.yamba.svc.YambaContract;
 
 
@@ -33,6 +37,23 @@ public class TimelineActivity extends ListActivity
         R.id.textStatus
     };
 
+    class DateBinder implements SimpleCursorAdapter.ViewBinder {
+        @Override
+        public boolean setViewValue(View view, Cursor cursor, int idx) {
+            if (R.id.textTime != view.getId()) { return false; }
+
+            long utime = cursor.getLong(idx);
+            String prettyDate = "unknown";
+            if (0 < utime) {
+                prettyDate = DateUtils
+                        .getRelativeTimeSpanString(utime, System.currentTimeMillis(), 0)
+                        .toString();
+            }
+
+            ((TextView) view).setText(prettyDate);
+            return true;
+        }
+    }
 
     private SimpleCursorAdapter listAdapter;
 
@@ -75,6 +96,7 @@ public class TimelineActivity extends ListActivity
                 FROM,
                 TO,
                 0);
+        listAdapter.setViewBinder(new DateBinder());
         setListAdapter(listAdapter);
     }
 }
