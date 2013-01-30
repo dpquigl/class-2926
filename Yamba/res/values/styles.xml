@@ -18,11 +18,11 @@
     <style name="yamba_base" parent="android:Widget.Holo.Light.TextView">
         <item name="android:textColor">@android:color/white</item>
     </style>
- 
+
     <style name="yamba_base_bold" parent="yamba_base">
         <item name="android:textStyle">bold</item>
     </style>
-    
+
     <style name="yamba_medium_bold" parent="yamba_base_bold">
         <item name="android:textSize">18sp</item>
     </style>

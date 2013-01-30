@@ -6,8 +6,8 @@
 
     <fragment
         android:id="@+id/timeline_fragment"
-        class="com.marakana.android.yamba.TimelineFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        class="com.marakana.android.yamba.TimelineFragment" />
 
 </LinearLayout>

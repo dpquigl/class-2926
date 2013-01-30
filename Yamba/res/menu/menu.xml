@@ -4,15 +4,13 @@
         android:id="@+id/menu_status"
         android:showAsAction="ifRoom|withText"
         android:title="@string/status"/>
-
     <item
         android:id="@+id/menu_timeline"
         android:showAsAction="ifRoom|withText"
         android:title="@string/timeline"/>
-
     <item
         android:id="@+id/menu_about"
         android:showAsAction="ifRoom|withText"
         android:title="@string/about"/>
-    
+
 </menu>

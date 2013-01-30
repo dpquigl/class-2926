@@ -2,17 +2,15 @@
 <resources>
 
     <string name="yamba">Yamba</string>
-    
-    <string name="about">About</string>
-    
-    <string name="timeline">Timeline</string>
-    
-    <string name="status">Status</string>
 
+    <string name="about">About</string>
+    <string name="about_text">KEYW does Yamba!</string>
+
+    <string name="timeline">Timeline</string>
+
+    <string name="status">Status</string>
     <string name="count">140</string>
     <string name="hint">your status here&#8230;</string>
     <string name="submit">Submit</string>
-    <string name="success">Succeeded!!</string>
-    <string name="failure">Post failed!!</string>
-    
+
 </resources>

@@ -39,7 +39,7 @@ public class TimelineFragment extends ListFragment
         R.id.textStatus
     };
 
-    class DateBinder implements SimpleCursorAdapter.ViewBinder {
+    static class DateBinder implements SimpleCursorAdapter.ViewBinder {
         @Override
         public boolean setViewValue(View view, Cursor cursor, int idx) {
             if (R.id.textTime != view.getId()) { return false; }
@@ -48,14 +48,15 @@ public class TimelineFragment extends ListFragment
             String prettyDate = "unknown";
             if (0 < utime) {
                 prettyDate = DateUtils
-                        .getRelativeTimeSpanString(utime, System.currentTimeMillis(), 0)
-                        .toString();
+                    .getRelativeTimeSpanString(utime, System.currentTimeMillis(), 0)
+                    .toString();
             }
 
             ((TextView) view).setText(prettyDate);
             return true;
         }
     }
+
 
     private SimpleCursorAdapter listAdapter;
 
