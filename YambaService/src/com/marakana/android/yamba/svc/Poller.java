@@ -46,8 +46,8 @@ public class Poller {
 
     public static void stopPolling(Context ctxt) {
         ((AlarmManager) ctxt.getSystemService(Context.ALARM_SERVICE))
-        .cancel(
-            PendingIntent.getService(
+            .cancel(
+                PendingIntent.getService(
                     ctxt,
                     INTENT_TAG,
                     getPollIntent(ctxt),

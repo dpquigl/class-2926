@@ -16,7 +16,6 @@
 package com.marakana.android.yamba;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
 
 /**
@@ -27,29 +26,9 @@ import android.widget.TextView;
 public class TimelineDetailActivity extends BaseActivity {
     public static final String TIMELINE_STATUS = "Timeline.STATUS";
 
-    private String message;
-
     @Override
     protected void onCreate(Bundle state) {
         super.onCreate(state);
-        setContentView(R.layout.timeline_detail);
-
-        if (null == state) { state = getIntent().getExtras(); }
-
-        message = (null == state)
-                ? "no status yet..."
-                : state.getString(TimelineDetailActivity.TIMELINE_STATUS);
-
-        TextView v = (TextView) findViewById(R.id.timeline_detail);
-        v.setBackgroundResource(R.drawable.bg);
-        v.setText(message);
+        setContentView(R.layout.activity_timeline_detail);
     }
-
-    @Override
-    protected void onSaveInstanceState(Bundle state) {
-        super.onSaveInstanceState(state);
-        state.putString(TimelineDetailActivity.TIMELINE_STATUS, message);
-    }
-
-
 }

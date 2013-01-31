@@ -13,10 +13,11 @@
         class="com.marakana.android.yamba.TimelineFragment" />
 
     <FrameLayout
-        android:id="@+id/timeline_details"
+        android:id="@+id/timeline_detail_fragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:layout_marginLeft="7dp"
         android:paddingLeft="7dp"
         android:background="@color/fog" />
 

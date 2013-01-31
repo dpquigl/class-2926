@@ -36,22 +36,34 @@ public class TimelineDetailFragment extends Fragment {
          return frag;
     }
 
+
+    private TextView details;
+    private String status;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         super.onCreateView(inflater, container, state);
 
+        details = (TextView) inflater.inflate(R.layout.timeline_detail, container, false);
+
+        if (null == state) { state = getActivity().getIntent().getExtras(); }
         if (null == state) { state = getArguments(); }
 
-        String message = (null == state)
-                ? "no status yet..."
-                : state.getString(TimelineDetailActivity.TIMELINE_STATUS);
+        setStatus(state);
 
-        TextView v = (TextView) inflater.inflate(R.layout.timeline_detail, container, false);
-
-        v.setText(message);
-
-        return v;
+        return details;
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle state) {
+        super.onSaveInstanceState(state);
+        state.putString(TimelineDetailActivity.TIMELINE_STATUS, status);
+    }
 
+    public void setStatus(Bundle state) {
+        status = (null == state)
+            ? "no status yet..."
+            : state.getString(TimelineDetailActivity.TIMELINE_STATUS);
+        if (null != details) { details.setText(status); }
+    }
 }

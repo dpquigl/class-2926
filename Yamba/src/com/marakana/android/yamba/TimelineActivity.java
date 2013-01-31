@@ -9,7 +9,7 @@ import android.view.MenuItem;
 
 
 public class TimelineActivity extends BaseActivity {
-    private static final String DETAIL_FRAGMENT = "Timeline.DETAIL";
+    public static final String DETAIL_FRAGMENT = "Timeline.DETAIL";
 
     private boolean usingFragments;
 
@@ -35,7 +35,7 @@ public class TimelineActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
 
-        usingFragments = null != findViewById(R.id.timeline_details);
+        usingFragments = null != findViewById(R.id.timeline_detail_fragment);
 
         if (usingFragments) { addDetailFragment(); }
     }
@@ -47,7 +47,7 @@ public class TimelineActivity extends BaseActivity {
 
         FragmentTransaction xact = mgr.beginTransaction();
         xact.add(
-                R.id.timeline_details,
+                R.id.timeline_detail_fragment,
                 TimelineDetailFragment.newInstance(null),
                 DETAIL_FRAGMENT);
         xact.commit();
@@ -57,7 +57,7 @@ public class TimelineActivity extends BaseActivity {
         FragmentManager mgr = getFragmentManager();
         FragmentTransaction xact = mgr.beginTransaction();
         xact.replace(
-                R.id.timeline_details,
+                R.id.timeline_detail_fragment,
                 TimelineDetailFragment.newInstance(args),
                 DETAIL_FRAGMENT);
         xact.addToBackStack(null);

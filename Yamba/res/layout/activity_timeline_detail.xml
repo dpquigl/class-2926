@@ -2,13 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/base_window"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".StatusActivity" >
+    android:layout_height="match_parent">
 
     <fragment
-        android:id="@+id/fragment_status"
+        android:id="@+id/fragment_timeline_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        class="com.marakana.android.yamba.StatusFragment" />
+        class="com.marakana.android.yamba.TimelineDetailFragment" />
 
 </FrameLayout>
