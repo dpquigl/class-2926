@@ -32,6 +32,9 @@
         <activity
             android:name=".StatusActivity"
             android:label="@string/yamba" />
-    </application>
+        <activity
+            android:name=".TimelineDetailActivity"
+            android:label="@string/yamba" />
+        </application>
 
 </manifest>

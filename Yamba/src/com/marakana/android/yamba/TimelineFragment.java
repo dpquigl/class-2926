@@ -3,6 +3,7 @@ package com.marakana.android.yamba;
 import android.app.ListFragment;
 import android.app.LoaderManager;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
@@ -92,8 +94,6 @@ public class TimelineFragment extends ListFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
         View root = super.onCreateView(inflater, container, state);
 
-        root.setBackgroundResource(R.drawable.bg);
-
         getLoaderManager().initLoader(LOADER_ID, null, this);
 
         listAdapter = new SimpleCursorAdapter(
@@ -107,5 +107,17 @@ public class TimelineFragment extends ListFragment
         setListAdapter(listAdapter);
 
         return root;
+    }
+
+    @Override
+    public void onListItemClick(ListView listV, View rowV, int pos, long id) {
+        Cursor cur = (Cursor) getListAdapter().getItem(pos);
+        String status = cur.getString(cur.getColumnIndex(
+                YambaContract.Timeline.Columns.STATUS));
+
+        Log.d(TAG, "click in: " + status);
+        Intent i = new Intent(getActivity(), TimelineDetailActivity.class);
+        i.putExtra(TimelineDetailActivity.TIMELINE_STATUS, status);
+        startActivity(i);
     }
 }
