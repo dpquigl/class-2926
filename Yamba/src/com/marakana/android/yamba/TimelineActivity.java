@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.marakana.android.yamba.svc.YambaContract;
+
 
 public class TimelineActivity extends BaseActivity {
     public static final String DETAIL_FRAGMENT = "Timeline.DETAIL";
@@ -38,6 +40,22 @@ public class TimelineActivity extends BaseActivity {
         usingFragments = null != findViewById(R.id.timeline_detail_fragment);
 
         if (usingFragments) { addDetailFragment(); }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Intent i = new Intent(YambaContract.YAMBA_SERVICE);
+        i.putExtra(YambaContract.SVC_PARAM_OP, YambaContract.SVC_OP_POLLING_OFF);
+        startService(i);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent i = new Intent(YambaContract.YAMBA_SERVICE);
+        i.putExtra(YambaContract.SVC_PARAM_OP, YambaContract.SVC_OP_POLLING_ON);
+        startService(i);
     }
 
     private void addDetailFragment() {

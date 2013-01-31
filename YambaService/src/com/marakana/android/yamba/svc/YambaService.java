@@ -64,13 +64,6 @@ public class YambaService extends IntentService {
     public YambaService() { super(TAG); }
 
     @Override
-    public void onCreate() {
-        super.onCreate();
-        Poller.startPolling(getApplicationContext());
-    }
-
-
-    @Override
     protected void onHandleIntent(Intent intent) {
         Bundle args = intent.getExtras();
         int op = args.getInt(YambaContract.SVC_PARAM_OP);
@@ -83,6 +76,14 @@ public class YambaService extends IntentService {
 
             case POLL:
                 new Poller((YambaApplication) getApplication()).pollStatus();
+                break;
+
+            case START_POLL:
+                Poller.startPolling(getApplication());
+                break;
+
+            case STOP_POLL:
+                Poller.stopPolling(getApplication());
                 break;
 
             default:
